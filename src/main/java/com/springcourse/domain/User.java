@@ -45,10 +45,10 @@ public class User implements Serializable{
 	@Enumerated(EnumType.STRING)
 	private Role role;
 	
-	@OneToMany(mappedBy = "owner")
+	@OneToMany(mappedBy = "user")
 	private List<Request> requests = new ArrayList<Request>();
 	
-	@OneToMany(mappedBy = "owner")
+	@OneToMany(mappedBy = "user")
 	private List<RequestStage> stages = new ArrayList<RequestStage>();
 	
 }
