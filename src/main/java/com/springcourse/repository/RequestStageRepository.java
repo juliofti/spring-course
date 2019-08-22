@@ -11,6 +11,5 @@ import com.springcourse.domain.RequestStage;
 @Repository
 public interface RequestStageRepository extends JpaRepository<RequestStage, Long>{
 
-	@Query("SELECT r FROM request_stage r WHERE id = ?1")
-	public List<RequestStage> findAllRequest(Long id);
+	public List<RequestStage> findAllRequestId(Long id);
 }
