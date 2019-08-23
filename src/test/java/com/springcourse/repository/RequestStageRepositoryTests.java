@@ -27,7 +27,7 @@ public class RequestStageRepositoryTests {
 	@Autowired private RequestStageRepository requestStageRepository;
 	
   @Test
-  public void saveTest() {
+  public void AsaveTest() {
 	  User owner = new User();
 	  owner.setId(1L);
 	  Request request = new Request();
