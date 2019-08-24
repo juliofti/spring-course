@@ -34,7 +34,7 @@ public class RequestResource {
 		return ResponseEntity.status(HttpStatus.CREATED).body(createdRequest);
 	}
 
-	@PutMapping()
+	@PutMapping("/{id}")
 	public ResponseEntity<Request> update(@PathVariable(name = "id") Long id, @RequestBody Request request) {
 		request.setId(id);
 		Request updatedRequest = requestService.save(request);
