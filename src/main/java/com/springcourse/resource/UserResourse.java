@@ -11,11 +11,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.springcourse.domain.Request;
 import com.springcourse.domain.User;
 import com.springcourse.dto.UserLogindto;
+import com.springcourse.model.PageModel;
+import com.springcourse.model.PageRequestModel;
 import com.springcourse.service.RequestService;
 import com.springcourse.service.UserService;
 
@@ -48,9 +51,11 @@ public class UserResourse {
 	}
 
 	@GetMapping
-	public ResponseEntity<List<User>> listAll() {
-		List<User> users = userService.listAll();
-		return ResponseEntity.ok(users);
+	public ResponseEntity<PageModel<User>> listAll(@RequestParam(value = "page")int page,
+			@RequestParam(value = "size")int size) {
+		PageRequestModel pr = new PageRequestModel(page, size);
+		PageModel<User> pm = userService.listAllOnLazyModel(pr);
+		return ResponseEntity.ok(pm);
 	}
 
 	@PostMapping("/login")
@@ -60,8 +65,10 @@ public class UserResourse {
 	}
 
 	@GetMapping("/{id}/requests")
-	public ResponseEntity<List<Request>> listAllReqeuestsById(@PathVariable(name = "id") Long id) {
-		List<Request> requests = requestService.listByOwnerId(id);
-		return ResponseEntity.ok(requests);
+	public ResponseEntity<PageModel<Request>> listAllReqeuestsById(@PathVariable(name = "id") Long id,
+			@RequestParam(value = "page")int page, @RequestParam(value = "size")int size) {
+		PageRequestModel pr = new PageRequestModel(page, size);
+		PageModel<Request> pm = requestService.listByOwnerIdOnLazyModel(id, pr);
+		return ResponseEntity.ok(pm);
 	}
 }
