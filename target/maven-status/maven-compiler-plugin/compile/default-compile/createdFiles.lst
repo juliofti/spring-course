@@ -1,7 +1,0 @@
-com\springcourse\domain\User.class
-com\springcourse\domain\enums\RequestState.class
-com\springcourse\domain\Request.class
-com\springcourse\ServletInitializer.class
-com\springcourse\domain\RequestStage.class
-com\springcourse\domain\enums\Role.class
-com\springcourse\SpringCourseApplication.class
